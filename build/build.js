@@ -14,8 +14,11 @@ const webpackConfig = require('./webpack.prod.conf')
 const spinner = ora('building for production...')
 spinner.start()
 
+//rm命令删除之前打包的数据
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+  //如果有异常则抛出异常
   if (err) throw err
+  //使用webpack打包，采用/webpack.prod.conf配置进行打包
   webpack(webpackConfig, (err, stats) => {
     spinner.stop()
     if (err) throw err
